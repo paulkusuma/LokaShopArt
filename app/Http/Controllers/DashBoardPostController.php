@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use App\Models\Category;
+use App\Models\products;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -34,7 +35,18 @@ class DashBoardPostController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        // return $request;
+        $validateData = $request->validate([
+            'name' => 'required|max:255',
+            'slug' => 'required',
+            'category_id' => 'required',
+            'price' => 'required',
+            'description' => 'required'
+        ]);
+        $validateData['user_id'] = auth()->user()->id;
+
+        product::create($validateData);
+        return redirect('/dashbooard/products')->with('success', 'Produk Baru berhasil ditambahkan');
     }
 
     /**

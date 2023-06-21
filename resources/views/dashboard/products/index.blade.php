@@ -5,6 +5,12 @@
     <h1 class="h2">Product Saya</h1>
   </div>
 
+  @if(session()->has('success'))
+    <div class="alert alert-success" role="alert">
+      {{ session('success') }}
+    </div>
+  @endif
+
   <div class="table-responsive small">
     <a href="/dashboard/products/create" class="btn btn-primary mb-3">Create New Product</a>
     <table class="table table-striped table-sm">
