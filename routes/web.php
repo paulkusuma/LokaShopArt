@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashBoardPostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -35,6 +35,7 @@ Route::get('/categories', function () {
     ]);
 });
 
+// Route Model Binding
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view('products', [
         'title' => "Product By : $category->name",
@@ -63,4 +64,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->middleware('auth');
+
+
+Route::get('/dashboard/products/checkSlug', [DashBoardPostController::class, 'checkSlug']);
+Route::resource('/dashboard/products', DashBoardPostController::class)->middleware('auth');
