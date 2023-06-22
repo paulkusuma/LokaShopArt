@@ -24,7 +24,6 @@
                             </ul>
                             
                         </div>
-                        <div class="details col-md-6">
                             <p>By <a href="/?author={{ $product->user->username }}">{{ $product->user->name }}</a> in <a href="/?categories={{ $product->category->slug }}" class="text-decoration-none"> {{ $product->category->name}}</a></p>
                             <h3 class="product-title">{{ $product -> name }}</h3>
                             <div class="rating">

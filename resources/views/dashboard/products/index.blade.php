@@ -9,7 +9,7 @@
     <div class="alert alert-success" role="alert">
       {{ session('success') }}
     </div>
-  @endif
+  @endif  
 
   <div class="table-responsive small">
     <a href="/dashboard/products/create" class="btn btn-primary mb-3">Create New Product</a>
@@ -31,9 +31,15 @@
           <td>{{ $product->category->name }}</td>
           <td>placeholder</td>
           <td>
-            <a href="/dashboard/products/{{ $product->slug }}"> <i class="bi bi-eye text-primary"></i></a>
-            <a href=""> <i class="bi bi-pencil-square text-warning"></i></a>
-            <a href=""> <i class="bi bi-trash text-danger"></i></a>
+            <a href="/dashboard/products/{{ $product->slug }}" class="badge"> <i class="bi bi-eye text-primary"></i></a>
+            <a href="/dashboard/products/{{ $product->slug }}/edit"> <i class="bi bi-pencil-square text-warning"></i></a>
+
+            {{-- Delete --}}
+            <form action="/dashboard/products/{{ $product->slug }}" method="post" class="d-inline">
+              @method('delete')
+              @csrf
+              <button class="badge border-0" onclick="return confirm('Yakin ingin menghapus product?')"><i class="bi bi-trash text-danger"></i></button>
+            </form>
           </td>
         </tr>
         @endforeach

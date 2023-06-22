@@ -28,7 +28,7 @@
                 </div> --}}
                 <div class="title">{{ $products[0] -> name }}</div>
                 <div class="desc">{{ $products[0] -> description }}</div>
-                <a href="/products/{{ $products[0] -> id }}">Beli</a>
+                <a href="/products/{{ $products[0] -> slug }}">Beli</a>
             </div>
         
 
@@ -51,7 +51,7 @@
                 <div class="desc">{{ $product -> description }}</div>
                 <div class="box">
                     <div class="harga">{{ $product -> price }}</div>
-                    <a href="/products/{{ $product -> id }}">Beli</a>
+                    <a href="/products/{{ $product -> slug }}">Beli</a>
                     {{-- <button class="btn" onclick="redirectToProductDetail('1')">Beli</button> --}}
                 </div>
             </div>

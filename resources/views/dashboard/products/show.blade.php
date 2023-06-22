@@ -42,9 +42,14 @@
                     <span class="color blue"></span>
                 </h5>
                 <div>
-                    <a href="/dashboard/products"> <i class="bi bi-arrow-left text-green"></i>Back</a>
-                    <a href=""> <i class="bi bi-pencil-square text-warning"></i>Edit</a>
-                    <a href=""> <i class="bi bi-trash text-danger"></i>Delete</a>
+                    <a href="/dashboard/products" class="btn"> <i class="bi bi-arrow-left text-green"></i>Back</a>
+                    <a href="/dashboard/products/{{ $product->slug }}/edit" class="btn"> <i class="bi bi-pencil-square text-warning"></i>Edit</a>
+                    {{-- Delete --}}
+                    <form action="/dashboard/products/{{ $product->slug }}" method="post" class="d-inline">
+                        @method('delete')
+                        @csrf
+                        <button class="btn" onclick="return confirm('Yakin ingin menghapus product?')"><i class="bi bi-trash text-danger"></i>Delete</button>
+                    </form>
                 </div>
             </div>
         </div>

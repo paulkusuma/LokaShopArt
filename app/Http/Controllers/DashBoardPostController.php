@@ -38,7 +38,7 @@ class DashBoardPostController extends Controller
         // return $request;
         $validateData = $request->validate([
             'name' => 'required|max:255',
-            'slug' => 'required',
+            'slug' => 'required|unique:products',
             'category_id' => 'required',
             'price' => 'required',
             'description' => 'required'
@@ -64,7 +64,10 @@ class DashBoardPostController extends Controller
      */
     public function edit(product $product)
     {
-        //
+        return view('dashboard.products.edit', [
+            'product' => $product,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -72,7 +75,22 @@ class DashBoardPostController extends Controller
      */
     public function update(Request $request, product $product)
     {
-        //
+        $rules = [
+            'name' => 'required|max:255',
+            'category_id' => 'required',
+            'price' => 'required',
+            'description' => 'required'
+        ];
+        if ($request->slug != $product->slug) {
+            $rules['slug'] = 'required|unique:products';
+        }
+        $validateData = $request->validate($rules);
+
+        $validateData['user_id'] = auth()->user()->id;
+
+        product::where('id', $product->id)
+            ->update($validateData);
+        return redirect('/dashboard/products')->with('success', 'Produk berhasil diupdate');
     }
 
     /**
@@ -80,7 +98,8 @@ class DashBoardPostController extends Controller
      */
     public function destroy(product $product)
     {
-        //
+        product::destroy($product->id);
+        return redirect('/dashboard/products')->with('success', 'Produk berhasil dihapus');
     }
 
     public function checkSlug(Request $request)
