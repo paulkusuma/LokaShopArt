@@ -20,7 +20,14 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        User::factory(3)->create();
+        User::create([
+            'name' => 'PaulKusuma',
+            'username' => 'paul',
+            'email' => 'paul@gmail.com',
+            'password' => bcrypt('password')
+        ]);
+
+        User::factory(5)->create();
 
         Category::create([
             'name' => 'Batik',
@@ -34,15 +41,15 @@ class DatabaseSeeder extends Seeder
             'name' => 'Vas',
             'slug' => 'vas'
         ]);
+        Category::create([
+            'name' => 'Wajan',
+            'slug' => 'wajan'
+        ]);
 
-        Product::factory(20)->create();
+        Product::factory(30)->create();
 
 
-        // User::create([
-        //     'name' => 'PaulKusuma',
-        //     'email' => 'paul@gmail.com',
-        //     'password' => bcrypt('password')
-        // ]);
+
         // User::create([
         //     'name' => 'Verda',
         //     'email' => 'Verda@gmail.com',

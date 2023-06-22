@@ -15,13 +15,15 @@
                         <div class="preview col-md-6">
                             
                             <div class="preview-pic tab-content">
-                            <div class="tab-pane active" id="pic-1"><img src="' . $product['image'] . '" /></div>
-                            <!-- Add more tab-panes for additional images if needed -->
+                                <div class="tab-pane active" id="pic-1">
+                                    <img src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->category->name }}">
+                                </div>
                             </div>
-                            <ul class="preview-thumbnail nav nav-tabs">
+                            <!-- Add more tab-panes for additional images if needed -->
+                            {{-- <ul class="preview-thumbnail nav nav-tabs">
                             <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="' . $product['thumbnail'] . '" /></a></li>
                             <!-- Add more list items for additional thumbnails if needed -->
-                            </ul>
+                            </ul> --}}
                             
                         </div>
                             <p>By <a href="/?author={{ $product->user->username }}">{{ $product->user->name }}</a> in <a href="/?categories={{ $product->category->slug }}" class="text-decoration-none"> {{ $product->category->name}}</a></p>

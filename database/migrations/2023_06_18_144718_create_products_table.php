@@ -16,7 +16,10 @@ return new class extends Migration {
             $table->foreignId('user_id');
             $table->string('name');
             $table->string('slug')->unique();
+
+            $table->string('image')->nullable();
             $table->string('description');
+            $table->integer('stok')->nullable();
             $table->integer('price');
             $table->timestamp('upload_at')->nullable();
             $table->timestamps();

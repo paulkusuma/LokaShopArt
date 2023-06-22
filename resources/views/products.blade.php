@@ -24,11 +24,11 @@
 
             <div>
                 {{-- <div class="image-container">
-                <img src="https://api.unsplash.com/1200x400/{{ $products[0]->category->name }}" alt="Shopping Image">
+                    <img src="{{ asset('storage/'. $products[0]->image) }}" alt="{{ $product->category->name }}">
                 </div> --}}
                 <div class="title">{{ $products[0] -> name }}</div>
                 <div class="desc">{{ $products[0] -> description }}</div>
-                <a href="/products/{{ $products[0] -> slug }}">Beli</a>
+                <a href="/products/{{ $products[0] -> slug }}" class="btn">Beli Sekarang</a>
             </div>
         
 
@@ -41,7 +41,7 @@
         <div class="products">
             @foreach($products->skip(1) as $product)
             <div class="card">
-                <div class="img"><img src="Gambar/1.png" alt=""></div>
+                <img src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->category->name }}">
                 <div class="title">{{ $product -> name }}</div>
 
                 <p>By <a href="/?author={{ $product->user->username }}">{{ $product->user->name }}</a> 

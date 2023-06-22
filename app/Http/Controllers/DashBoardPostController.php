@@ -35,16 +35,21 @@ class DashBoardPostController extends Controller
      */
     public function store(Request $request)
     {
+        // // return $request->file('image')->store('product-images');
         // return $request;
         $validateData = $request->validate([
             'name' => 'required|max:255',
             'slug' => 'required|unique:products',
             'category_id' => 'required',
+            'stok' => 'required',
+            'image' => 'image|file|max:2048',
             'price' => 'required',
             'description' => 'required'
         ]);
+        if ($request->file('image')) {
+            $validateData['image'] = $request->file('image')->store('product-images');
+        }
         $validateData['user_id'] = auth()->user()->id;
-
         product::create($validateData);
         return redirect('/dashboard/products')->with('success', 'Produk Baru berhasil ditambahkan');
     }
@@ -77,7 +82,10 @@ class DashBoardPostController extends Controller
     {
         $rules = [
             'name' => 'required|max:255',
+            'slug' => 'required|unique:products',
             'category_id' => 'required',
+            'stok' => 'required',
+            'image' => 'image|file|max:2048',
             'price' => 'required',
             'description' => 'required'
         ];

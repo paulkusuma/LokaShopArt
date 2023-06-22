@@ -5,14 +5,19 @@
     <div class="container-fliud">
         <div class="wrapper row">
             <div class="preview col-md-5">
-                <div class="preview-pic tab-content">
-                <div class="tab-pane active" id="pic-1"><img src="' . $product['image'] . '" /></div>
-                <!-- Add more tab-panes for additional images if needed -->
-                </div>
-                <ul class="preview-thumbnail nav nav-tabs">
+                @if($product->image)
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1">
+                            <img src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->category->name }}" style="width: 300px; height: auto;">
+                        </div>
+                    </div>
+                @else()
+                @endif
+                
+                {{-- <ul class="preview-thumbnail nav nav-tabs">
                 <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="' . $product['thumbnail'] . '" /></a></li>
                 <!-- Add more list items for additional thumbnails if needed -->
-                </ul>
+                </ul> --}}
                 
             </div>
             <div class="details col-md-7">
