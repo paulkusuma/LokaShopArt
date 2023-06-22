@@ -6,6 +6,7 @@ use App\Models\product;
 use App\Models\Category;
 use App\Models\products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashBoardPostController extends Controller
@@ -89,10 +90,20 @@ class DashBoardPostController extends Controller
             'price' => 'required',
             'description' => 'required'
         ];
+
+
+        // 
         if ($request->slug != $product->slug) {
-            $rules['slug'] = 'required|unique:products';
+            $rules['slug'] = 'required';
         }
         $validateData = $request->validate($rules);
+
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validateData['image'] = $request->file('image')->store('product-images');
+        }
 
         $validateData['user_id'] = auth()->user()->id;
 
@@ -106,6 +117,9 @@ class DashBoardPostController extends Controller
      */
     public function destroy(product $product)
     {
+        if ($product->image) {
+            Storage::delete($product->image);
+        }
         product::destroy($product->id);
         return redirect('/dashboard/products')->with('success', 'Produk berhasil dihapus');
     }

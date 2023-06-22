@@ -5,7 +5,7 @@
   </div>
   <div class="col-lg-8">
 
-  <form method="post" action="/dashboard/products/{{ $product->slug }}">
+  <form method="post" action="/dashboard/products/{{ $product->slug }}" enctype="multipart/form-data">
     @method('put')
     @csrf
     <div class="mb-3">
@@ -55,7 +55,7 @@
     <div class="mb-3">
       <label for="stok" class="form-label">Stok</label>
       <input type="text" class="form-control @error('stok') is-invalid @enderror" id="stok" name="stok" 
-      value="{{ old('stok') }}" required>
+      value="{{ old('stok', $product->stok) }}" required>
       @error('stok')
       <div class="invalid-feedback">
         {{ $message }}
@@ -65,7 +65,13 @@
 
     <div class="mb-3">
       <label for="image" class="form-label">Image</label>
-      <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" multiple>
+      <input type="hidden" name="oldImage" value="{{ $product->image }}">
+      @if($product->image)
+        <img src="{{ asset('storage/' . $product->image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+      @else
+        <img class="img-preview img-fluid mb-3 col-sm-5">
+      @endif
+      <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image">
       @error('image')
       <div class="invalid-feedback">
         {{ $message }}
@@ -96,7 +102,21 @@
         fetch('/dashboard/products/checkSlug?name='+name.value)
         .then(response=>response.json())
         .then(data=>slug.value=data.slug)
-    })
+    });
+
+    function previewImage(){
+      const image=document.querySelector('#image')
+      const imgPreview=document.querySelector('.img-preview')
+
+      imgPreview.style.display='block';
+
+      const oFReader=new FileReader();
+      oFReader.readAsDataURL(image.files[0]);
+
+      oFReader.onload=function(oFREvent){
+        imgPreview.src=oFREvent.target.result;
+      }
+    }
 
 </script>
 @endsection

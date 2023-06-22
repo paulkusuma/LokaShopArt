@@ -6,12 +6,13 @@
         <div class="wrapper row">
             <div class="preview col-md-5">
                 @if($product->image)
-                    <div class="preview-pic tab-content">
+                    <div class="preview-pic tab-content" style="overflow:hidden;">
                         <div class="tab-pane active" id="pic-1">
                             <img src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->category->name }}" style="width: 300px; height: auto;">
                         </div>
                     </div>
                 @else()
+                {{--  --}}
                 @endif
                 
                 {{-- <ul class="preview-thumbnail nav nav-tabs">
