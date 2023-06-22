@@ -12,6 +12,7 @@ class Product extends Model
     protected $guarded = ['id'];
     protected $with = ['user', 'category'];
 
+
     public function scopeFilter($query, array $filter)
     {
         $query->when($filter['search'] ?? false, function ($query, $search) {

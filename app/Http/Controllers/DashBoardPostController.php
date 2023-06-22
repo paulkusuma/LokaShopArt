@@ -46,7 +46,7 @@ class DashBoardPostController extends Controller
         $validateData['user_id'] = auth()->user()->id;
 
         product::create($validateData);
-        return redirect('/dashbooard/products')->with('success', 'Produk Baru berhasil ditambahkan');
+        return redirect('/dashboard/products')->with('success', 'Produk Baru berhasil ditambahkan');
     }
 
     /**
