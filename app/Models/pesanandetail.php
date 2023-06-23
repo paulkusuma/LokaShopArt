@@ -14,9 +14,9 @@ class pesanandetail extends Model
         return $this->belongsTo(product::class);
     }
 
-    public function pesanan()
+    public function Pesanan()
     {
-        return $this->belongsTo(pesanan::class);
+        return $this->belongsTo(Pesanan::class);
     }
 
 }

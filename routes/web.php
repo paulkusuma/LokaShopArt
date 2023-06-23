@@ -28,6 +28,9 @@ Route::get('/', function () {
 });
 
 Route::get('/', [ProductController::class, 'index']);
+Route::get('/landing', [ProductController::class, 'landing']);
+
+
 
 Route::get('products/{product}', [ProductController::class, 'showdetail']);
 

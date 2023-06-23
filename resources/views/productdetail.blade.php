@@ -12,18 +12,15 @@
             <div class="card">
                 <div class="container-fliud">
                     <div class="wrapper row">
-                        <div class="preview col-md-6">
+                        <div class="preview col-md-5">
                             
-                            <div class="preview-pic tab-content">
+                      
+
+                            <div class="preview-pic tab-content" style="overflow:hidden;">
                                 <div class="tab-pane active" id="pic-1">
-                                    <img src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->category->name }}">
+                                    <img src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->category->name }}" style="width: 350px; height: 300;">
                                 </div>
-                            </div>
-                            <!-- Add more tab-panes for additional images if needed -->
-                            {{-- <ul class="preview-thumbnail nav nav-tabs">
-                            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="' . $product['thumbnail'] . '" /></a></li>
-                            <!-- Add more list items for additional thumbnails if needed -->
-                            </ul> --}}
+                       
                             
                         </div>
                             <p>By <a href="/?author={{ $product->user->username }}">{{ $product->user->name }}</a> in <a href="/?categories={{ $product->category->slug }}" class="text-decoration-none"> {{ $product->category->name}}</a></p>

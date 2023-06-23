@@ -33,8 +33,9 @@
         
 
         </div>
+       
     </section>
-
+    <br>
     <h1 class="pheading">Our Hot Sale Art Right Now</h1>
  
     <section class="sec">

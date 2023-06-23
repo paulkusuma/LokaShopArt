@@ -215,6 +215,12 @@ img {
     padding: 1.3em;
 }
 
+.card .preview .card-img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
 @keyframes opacity {
     from {
         opacity: 0.5;

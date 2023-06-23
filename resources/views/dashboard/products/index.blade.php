@@ -29,7 +29,7 @@
           <td>{{ $loop->iteration }}</td>
           <td>{{ $product->name }}</td>
           <td>{{ $product->category->name }}</td>
-          <td>placeholder</td>
+          <td>{{ $product->stok }}</td>
           <td>
             <a href="/dashboard/products/{{ $product->slug }}" class="badge"> <i class="bi bi-eye text-primary"></i></a>
             <a href="/dashboard/products/{{ $product->slug }}/edit"> <i class="bi bi-pencil-square text-warning"></i></a>

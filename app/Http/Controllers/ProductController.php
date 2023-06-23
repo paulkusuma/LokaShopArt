@@ -22,4 +22,9 @@ class ProductController extends Controller
             "product" => $product
         ]);
     }
+
+    public function landing()
+    {
+        return view('landing');
+    }
 }
