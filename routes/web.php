@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashBoardPostController;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -8,6 +9,7 @@ use \App\Models\product;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Models\User;
+
 
 
 /*
@@ -71,3 +73,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/dashboard/products/checkSlug', [DashBoardPostController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/products', DashBoardPostController::class)->middleware('auth');
+
+
+Route::get('pesanan/{product}', [PesananController::class, 'pesan']);
+Route::post('pesanan/{product}', [PesananController::class, 'pesan']);
+Route::get('/checkout', [PesananController::class, 'checkout'])->name('checkout');

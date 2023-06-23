@@ -42,6 +42,11 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function Pesanandetail()
+    {
+        return $this->hasMany(Pesanandetail::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

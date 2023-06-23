@@ -19,6 +19,9 @@ class DashBoardPostController extends Controller
         return view('dashboard.products.index', [
             'products' => product::where('user_id', auth()->user()->id)->get()
         ]);
+        // return view('dashboard.products.index', [
+        //     'products' => product::where('user_id', auth()->user()->id)->get()->withQueryString()
+        // ]);
     }
 
     /**

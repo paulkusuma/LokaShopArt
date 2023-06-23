@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'name' => $this->faker->word(),
             'slug' => $this->faker->slug(),
             'description' => $this->faker->sentence(5, 20),
-            'price' => $this->faker->randomNumber(4),
+            'price' => $this->faker->randomNumber(9),
             'category_id' => mt_rand(1, 3),
             'user_id' => mt_rand(1, 3)
         ];

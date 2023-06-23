@@ -19,16 +19,16 @@
             <div class="text">
                 <h1>New Arrivals Art</h1>
                 <p>Dapatkan Produk Kesenian Terbaru Dari Para Seniman Indonesia</p>
-                <button class="btn">Beli Sekarang</button>
+                <button> <a href="/products/{{ $products[0] -> slug }}" class="btn">Beli Sekarang</a></button>
             </div>
 
             <div>
-                {{-- <div class="image-container">
-                    <img src="{{ asset('storage/'. $products[0]->image) }}" alt="{{ $product->category->name }}">
-                </div> --}}
+                    <div class="image-container">
+                        <img src="{{ asset('storage/'. $products[0]->image) }}" alt="{{ $products[0]->category->name }}">
+                    </div>
                 <div class="title">{{ $products[0] -> name }}</div>
                 <div class="desc">{{ $products[0] -> description }}</div>
-                <a href="/products/{{ $products[0] -> slug }}" class="btn">Beli Sekarang</a>
+               
             </div>
         
 
@@ -45,14 +45,14 @@
                 <div class="title">{{ $product -> name }}</div>
 
                 <p>By <a href="/?author={{ $product->user->username }}">{{ $product->user->name }}</a> 
-                    <a href="/?categories={{ $product->category->slug }}" class="text-decoration-none"> 
+                    In <a href="/?categories={{ $product->category->slug }}" class="text-decoration-none"> 
                         {{ $product->category->name}}</a> {{ $product->created_at->diffForHumans() }}</p>
                 
                 <div class="desc">{{ $product -> description }}</div>
                 <div class="box">
-                    <div class="harga">{{ $product -> price }}</div>
+                    <div class="harga"> Rp. {{ number_format($product -> price) }}</div>
                     <a href="/products/{{ $product -> slug }}">Beli</a>
-                    {{-- <button class="btn" onclick="redirectToProductDetail('1')">Beli</button> --}}
+                    
                 </div>
             </div>
             

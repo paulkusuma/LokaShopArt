@@ -18,7 +18,7 @@
         <li><a href="" class="active"></a></li>
         <li><a href="/" >New Arrivals</a></li>
         <li><a href="/cekongkir" >Cek Ongkir</a></li>
-        <li><a href=""><i class="fa-solid fa-cart-shopping"></i></a></li>
+        <li><a href="{{ route('checkout') }}"><i class="fa-solid fa-cart-shopping"></i></a></li>
         @auth
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">

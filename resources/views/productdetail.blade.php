@@ -39,7 +39,8 @@
                                 <span class="review-no">41 reviews</span>
                             </div>
                             <p class="product-description">{{ $product -> description }}</p>
-                            <h4 class="price">current price: <span>{{ $product -> price }}</span></h4>
+                            <h4 class="price">current price: <span> Rp. {{ number_format($product -> price) }}</span></h4>
+                            <h4 class="stok">Stok : <span>{{ $product -> stok }}</span></h4>
                             <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
                             <h5 class="sizes">sizes:
                                 <span class="size" data-toggle="tooltip" title="small">s</span>
@@ -52,15 +53,29 @@
                                 <span class="color green"></span>
                                 <span class="color blue"></span>
                             </h5>
-                            <div class="action">
-                                <button class="add-to-cart btn btn-default" type="button">add to cart</button>
-                                <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-                            </div>
+                            <br>
+
+                            <form action="/pesanan/{{ $product -> slug }}" method="post">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="Jumpesanan" class="form-label">Jumlah Pesanan</label>
+                                    <input type="number" class="form-control @error('Jumpesanan') is-invalid @enderror" id="Jumpesanan" name="Jumpesanan" 
+                                    value="{{ old('Jumpesanan') }}" required>
+                                    @error('Jumpesanan')
+                                    <div class="invalid-feedback">
+                                      {{ $message }}
+                                    </div>
+                                    @enderror
+                                  </div>
+                                  <br>
+                                  <button class="add-to-cart btn btn-default" type="submit">add to cart</button>
+                            </form>
+                            <a href="/" class="btn">Back</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    <a href="/">Back</a>
+  
 
 @endsection
